@@ -1,0 +1,68 @@
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v9_only_film_099_mask
+总体统计信息: /data/depression_tts/synthese_data/v9_only_film_099_mask/overall_generation_stats.json
+============================================================
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v9_only_film_099_no_contra
+总体统计信息: /data/depression_tts/synthese_data/v9_only_film_099_no_contra/overall_generation_stats.json
+============================================================
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v9_only_film_099_FA
+总体统计信息: /data/depression_tts/synthese_data/v9_only_film_099_FA/overall_generation_stats.json
+============================================================
+
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v9_film_only_099_mask_FA_half
+总体统计信息: /data/depression_tts/synthese_data/v9_film_only_099_mask_FA_half/overall_generation_stats.json
+============================================================
+
+
+=== Done ===
+Total trials:   4700
+Successful:     4700
+Success rate:   100.0%
+Output folder:  /data/depression_tts/quality_eval_v9_099
+Log file:       /data/depression_tts/quality_eval_v9_099/eval_generation_log.csvs

@@ -1,0 +1,30 @@
+#!/bin/sh
+#PBS -l walltime=120:00:00
+#PBS -q ai
+#PBS -l select=1:ncpus=32:ngpus=1:mem=240GB
+#PBS -P 72000002
+#PBS -N matcha_fr_1234_dec
+#PBS -o ./pbs_output_matcha_no_ft.txt
+#PBS -j oe
+
+cd "$PBS_O_WORKDIR" || exit $?
+
+module load miniforge3/23.10
+conda activate VBM-wav2vec
+
+export OMP_NUM_THREADS=1
+
+#python matcha/train.py --config-name train_daic trainer.max_epochs=1000 logger=csv
+#启用解藕+冻结all：
+CUDA_VISIBLE_DEVICES=0  python -m matcha.train --config-name train_daic_utter trainer.max_epochs=1000 logger=csv model.use_decoupled_conditions=true +model.freeze_encoder_stages=all
+
+#启用解藕+冻结encoder 1.2
+#python matcha/train.py --config-name train_daic_utter   trainer.max_epochs=1000 logger=csv   model.use_decoupled_conditions=true   +model.freeze_encoder_stages=[1,2,3,4] +model.decoder.use_spk_film_fullpath=true  trainer.gradient_clip_val=1.0
+
+#启用解藕+冻结encoder all
+# python matcha/train.py --config-name train_daic_utter \
+#   trainer.max_epochs=1000 logger=csv \
+#   model.use_decoupled_conditions=true \
+#   +model.freeze_encoder_stages=all
+
+#torchrun --nnodes=1 --nproc_per_node=1 --master_port=29512 /scratch/users/ntu/yuxin.li/haren_ctc/training_5cv.py

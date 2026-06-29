@@ -1,0 +1,83 @@
+Output folder:  /data/depression_tts/quality_eval_test_full_1120_duration_cond_399
+Log file:       /data/depression_tts/quality_eval_test_full_1120_duration_cond_399/eval_generation_log.csv
+
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_FA
+总体统计信息: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_FA/overall_generation_stats.json
+============================================================
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_no_contra
+总体统计信息: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_no_contra/overall_generation_stats.json
+============================================================
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_mask_FA
+总体统计信息: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_mask_FA/overall_generation_stats.json
+============================================================
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_mask_FA_half
+总体统计信息: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_mask_FA_half/overall_generation_stats.json
+============================================================
+
+============================================================
+=== 批量合成完成 (训练集转录文本) ===
+总subject数: 106
+总目标句子数: 2984
+总尝试数: 2984
+总成功数: 2984
+总体成功率: 100.0%
+数据来源: 训练集转录文本（Healthy_Text_Pool + Depressed_Text_Pool）
+Embedding使用方式: 仅 matched（dep==spk）
+采样模式: 已移除
+PHQ8_Binary分布: {0: 75, 1: 31}
+输出基础文件夹: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_mask
+总体统计信息: /data/depression_tts/synthese_data/v8_dep_slerp_1120_399_mask/overall_generation_stats.json
+============================================================
+
+输出基础文件夹: /data/depression_tts/synthese_data/v8_no_contra_8x
+总体统计信息: /data/depression_tts/synthese_data/v8_no_contra_8x/overall_generation_stats.json
+============================================================
+/data/depression_tts/synthese_data/v8_no_contra_8x
