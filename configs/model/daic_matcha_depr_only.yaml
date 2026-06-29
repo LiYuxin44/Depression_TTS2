@@ -1,0 +1,32 @@
+defaults:
+  - matcha
+  - _self_
+
+_target_: matcha.models.matcha_tts.MatchaTTS
+
+# 基础参数
+n_vocab: 178
+n_spks: 187      # 启用多说话人（以subject映射到spk id）
+spk_emb_dim: 64
+n_feats: 80
+out_size: null
+prior_loss: true
+use_precomputed_durations: false
+
+# DAIC特定参数
+use_daic_conditions: true
+depression_cond_dim: 32  # 仅使用depression条件
+speaker_cond_dim: 0      # 关闭speaker条件向量
+
+# 允许与DAIC条件并存speaker id嵌入
+use_speaker_id_with_daic: true
+
+# Adapter参数
+use_adapter: true
+adapter_dim: 16
+adapter_dropout: 0.3
+
+# 数据统计
+data_statistics: ${data.data_statistics}
+
+

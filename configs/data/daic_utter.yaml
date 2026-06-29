@@ -1,0 +1,57 @@
+# configs/data/daic_utter.yaml
+defaults:
+  - ljspeech
+  - _self_
+
+_target_: matcha.data.text_mel_datamodule.TextMelDataModule
+
+name: daic-woz-mixed-utter
+
+# 条件控制：默认沿用外部嵌入，可切换为 phq_level / phq_scalar
+depression_condition_type: precomputed_embedding
+phq_score_metadata_path: /home/i-liyuxin/Depression_TTS/matcha/data/metadata_with_phq.csv
+phq_score_column: PHQ8_Score
+phq_level_thresholds: [0, 5, 10, 15, 20, 28]
+phq_scalar_min: 0.0
+phq_scalar_max: 24.0
+
+# 数据文件路径
+train_filelist_path: /home/i-liyuxin/Depression_TTS/matcha/data/daic_filelist_train_22k.txt
+valid_filelist_path: /home/i-liyuxin/Depression_TTS/matcha/data/daic_filelist_val_22k.txt
+
+# Subject映射文件路径（保持不变）
+train_subject_file_path: /home/i-liyuxin/Depression_TTS/matcha/data/daic_filelist_train_subjects.txt
+valid_subject_file_path: /home/i-liyuxin/Depression_TTS/matcha/data/daic_filelist_val_subjects.txt
+
+# Embeddings文件路径：仅使用 depression（utterance 级别）；禁用外部 speaker embeddings
+train_depression_embeddings_path: /home/i-liyuxin/Contrastive_OS/GDST_embeddings_utterance-3-trf-ordinal-asr/train_embeddings.npz
+valid_depression_embeddings_path: /home/i-liyuxin/Contrastive_OS/GDST_embeddings_utterance-3-trf-ordinal-asr/val_embeddings.npz
+train_speaker_embeddings_path: null
+valid_speaker_embeddings_path: null
+
+# 训练参数
+batch_size: 32
+num_workers: 20
+pin_memory: true
+n_spks: 141  # 使用 subject→spk 映射自动推断说话人数，启用 n_spk 逻辑
+
+# 音频和梅尔参数
+n_fft: 1024
+n_feats: 80
+sample_rate: 22050
+hop_length: 256
+win_length: 1024
+f_min: 0.0
+f_max: 8000
+
+# 文本清洗
+cleaners: [english_cleaners2]
+add_blank: true
+
+# 数据统计
+data_statistics:
+  mel_mean: -6.974664688110352
+  mel_std: 2.0113120079040527
+
+load_durations: false
+seed: ${seed}

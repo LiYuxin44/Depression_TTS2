@@ -1,0 +1,83 @@
+# @package _global_
+
+# specify here default configuration
+# order of defaults determines the order in which configs override each other
+defaults:
+  - _self_
+  - data: daic
+  - model: daic_matcha
+  # 并行变体（仅 depression 条件 + speaker id 嵌入）可用 train_daic_depr_only.yaml 运行
+  - callbacks: default
+  - logger: tensorboard
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+
+  # experiment configs allow for version control of specific hyperparameters
+  - experiment: null
+
+  # config for hyperparameter optimization
+  - hparams_search: null
+
+  # optional local config for machine/user specific settings
+  - optional local: default
+
+  # debugging config (enable through command line, e.g. `python train.py debug=default)
+  - debug: null
+
+# task name, determines output directory path
+task_name: "train_daic"
+
+run_name: "daic_adapter_finetune"
+
+# tags to help you identify your experiments
+tags: ["daic", "adapter", "depression", "finetune"]
+
+# set False to skip model training
+train: True
+
+# evaluate on test set, using best model weights achieved during training
+test: False
+
+# checkpoint path for finetuning
+# 续训（严格恢复 optimizer/epoch）请确保 ckpt 与当前模型结构一致；如需“部分加载”，请使用 pretrained_ckpt，并将 ckpt_path 置为 null
+ckpt_path: null
+pretrained_ckpt: "/scratch/users/ntu/yuxin.li/matcha-tts-new/ckpts/matcha_vctk.ckpt"
+spk_emb_load_mode: "ignore"
+# seed for random number generators in pytorch, numpy and python.random
+seed: 1234
+
+# 训练策略
+trainer:
+  max_epochs: 100
+  gradient_clip_val: 5.0
+  accumulate_grad_batches: 1
+  
+  # 学习率调度
+  callbacks:
+    - _target_: lightning.pytorch.callbacks.LearningRateMonitor
+      logging_interval: step
+    - _target_: lightning.pytorch.callbacks.ModelCheckpoint
+      monitor: val_loss
+      mode: min
+      save_top_k: 3
+      filename: daic-{epoch:02d}-{val_loss:.4f}
+
+# 优化器配置
+model:
+  optimizer:
+    _target_: torch.optim.Adam
+    _partial_: true
+    lr: 1e-4
+    weight_decay: 0
+  
+  # scheduler:
+  #   scheduler:
+  #     _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+  #     _partial_: true
+  #     T_max: 300
+  #     eta_min: 1e-6
+  #   lightning_args:
+  #     interval: epoch
+  #     frequency: 1 

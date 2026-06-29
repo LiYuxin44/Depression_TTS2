@@ -1,0 +1,17 @@
+#!/bin/sh
+#PBS -l walltime=24:00:00
+#PBS -q normal
+#PBS -l select=1:ncpus=16:ngpus=1:mem=110GB
+#PBS -P 72000002
+#PBS -N contrastive
+#PBS -o ./pbs_output_contrastive.txt
+#PBS -j oe
+
+cd "$PBS_O_WORKDIR" || exit $?
+
+module load miniforge3/23.10
+conda activate VBM-wav2vec
+
+export OMP_NUM_THREADS=1
+
+python /scratch/users/ntu/yuxin.li/matcha-tts-new/matcha/utils/generate_data_statistics.py -i daic.yaml -b 8 -f | cat

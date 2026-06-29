@@ -1,0 +1,37 @@
+defaults:
+  - matcha
+  - _self_
+
+_target_: matcha.models.matcha_tts.MatchaTTS
+
+# 基础参数
+n_vocab: 178
+n_spks: ${data.n_spks}  # 继承数据侧 n_spks（允许 auto / 多说话人）
+spk_emb_dim: 64
+n_feats: 80
+out_size: null
+prior_loss: true
+use_precomputed_durations: false
+
+# DAIC特定参数
+use_daic_conditions: true
+depression_cond_dim: 32  # 仅保留 depression 条件
+speaker_cond_dim: 0      # 移除 speaker 条件向量
+
+# 解耦控制开关（默认false，保持旧行为；可通过命令行 +model.use_decoupled_conditions=true 开启）
+use_decoupled_conditions: false
+
+# 与 DAIC 条件并存 speaker id（n_spk）逻辑；即使用原始 Matcha-TTS 的 n_spk
+use_speaker_id_with_daic: true
+
+# Adapter参数
+use_adapter: true
+adapter_dim: 32
+adapter_dropout: 0.2
+
+# 冻结策略
+#freeze_encoder_stages: [1, 2]  # 冻结前几层encoder
+freeze_decoder_stages: []       # 不冻结decoder
+
+# 数据统计
+data_statistics: ${data.data_statistics}

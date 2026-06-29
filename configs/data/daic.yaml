@@ -1,0 +1,51 @@
+# configs/data/daic.yaml
+defaults:
+  - ljspeech
+  - _self_
+
+_target_: matcha.data.text_mel_datamodule.TextMelDataModule
+
+name: daic-woz-mixed
+
+# 数据文件路径
+train_filelist_path: /scratch/users/ntu/yuxin.li/matcha-tts-new/matcha/data/daic_filelist_train_22k.txt
+valid_filelist_path: /scratch/users/ntu/yuxin.li/matcha-tts-new/matcha/data/daic_filelist_val_22k.txt
+
+# Subject映射文件路径
+train_subject_file_path: /scratch/users/ntu/yuxin.li/matcha-tts-new/matcha/data/daic_filelist_train_subjects.txt
+valid_subject_file_path: /scratch/users/ntu/yuxin.li/matcha-tts-new/matcha/data/daic_filelist_val_subjects.txt
+
+# Embeddings文件路径（仅使用 depression 条件；speaker 条件留空以禁用）
+train_depression_embeddings_path: /scratch/users/ntu/yuxin.li/contrastive_model_SV/GDST_embeddings/train_embeddings.npz
+valid_depression_embeddings_path: /scratch/users/ntu/yuxin.li/contrastive_model_SV/GDST_embeddings/val_embeddings.npz
+train_speaker_embeddings_path: /scratch/users/ntu/yuxin.li/contrastive_model_SV/speaker_embeddings/train_speaker_embeddings.npz
+valid_speaker_embeddings_path: /scratch/users/ntu/yuxin.li/contrastive_model_SV/speaker_embeddings/val_speaker_embeddings.npz
+
+# 训练参数
+batch_size: 32
+num_workers: 20
+pin_memory: true
+n_spks: 1  # 保持原分支默认禁用 speaker embedding
+
+# 音频和梅尔参数
+n_fft: 1024
+n_feats: 80
+sample_rate: 22050
+hop_length: 256
+win_length: 1024
+f_min: 0.0
+f_max: 8000
+
+# 文本清洗
+# Use phoneme cleaners by default; if espeak is unavailable on compute nodes,
+# you can override at submit time with: data.cleaners=[basic_cleaners]
+cleaners: [english_cleaners2]
+add_blank: true
+
+# 数据统计
+data_statistics:
+  mel_mean: -6.974664688110352
+  mel_std: 2.0113120079040527
+
+load_durations: false
+seed: ${seed} 

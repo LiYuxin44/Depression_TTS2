@@ -1,0 +1,58 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: daic_utter
+  - model: daic_matcha
+  - callbacks: default
+  - logger: tensorboard
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+  - experiment: null
+  - hparams_search: null
+  - optional local: default
+  - debug: null
+
+# task name, determines output directory path
+# 用于区分输出目录
+task_name: "train_daic_utter_train_full_film_only"
+run_name: "decouple_unfreeze_all"
+
+tags: ["daic", "adapter", "depression", "utterance", "finetune"]
+
+# set False to skip model training
+train: True
+
+# evaluate on test set, using best model weights achieved during training
+test: False
+
+# checkpoint path for finetuning
+ckpt_path: null
+# 不使用任何预训练权重
+pretrained_ckpt: null
+spk_emb_load_mode: "ignore"
+seed: 1234
+
+# 训练策略
+trainer:
+  max_epochs: 100
+  gradient_clip_val: 5.0
+  accumulate_grad_batches: 1
+  callbacks:
+    - _target_: lightning.pytorch.callbacks.LearningRateMonitor
+      logging_interval: step
+    - _target_: lightning.pytorch.callbacks.ModelCheckpoint
+      monitor: val_loss
+      mode: min
+      save_top_k: 3
+      filename: daic-utter-{epoch:02d}-{val_loss:.4f}
+
+# 优化器配置
+model:
+  optimizer:
+    _target_: torch.optim.Adam
+    _partial_: true
+    lr: 1e-4
+    weight_decay: 0.0001

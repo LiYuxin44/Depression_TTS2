@@ -1,0 +1,51 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: daic_depr_only
+  - model: daic_matcha_depr_only
+  - callbacks: default
+  - logger: csv
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+
+  - experiment: null
+  - hparams_search: null
+  - optional local: default
+  - debug: null
+
+task_name: "train_daic_depr_only"
+run_name: "daic_depr_only_adapter"
+
+tags: ["daic", "adapter", "depression-only","finetune"]
+
+train: True
+test: False
+
+#ckpt_path: "/scratch/users/ntu/yuxin.li/matcha-tts-new/ckpts/matcha_vctk.ckpt"
+ckpt_path: null
+seed: 1234
+
+trainer:
+  max_epochs: 300
+  gradient_clip_val: 1.0
+  accumulate_grad_batches: 1
+  callbacks:
+    - _target_: lightning.pytorch.callbacks.LearningRateMonitor
+      logging_interval: step
+    - _target_: lightning.pytorch.callbacks.ModelCheckpoint
+      monitor: val_loss
+      mode: min
+      save_top_k: 3
+      filename: daic-depr-only-{epoch:02d}-{val_loss:.4f}
+
+model:
+  optimizer:
+    _target_: torch.optim.Adam
+    _partial_: true
+    lr: 1e-4
+    weight_decay: 0
+
+
